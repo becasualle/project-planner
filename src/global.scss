@@ -1,0 +1,14 @@
+body {
+  background: #f2f2f2;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  //places 600px container in the center of the page
+  max-width: 600px;
+  margin: 0 auto;
+
+  color: #555;
+}
