@@ -1,9 +1,14 @@
 <template>
   <div class="project">
-    <div class="project_actions">
+    <div class="project__actions">
       <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
+      <div class="icons">
+        <span class="material-icons"> edit </span>
+        <span class="material-icons"> delete </span>
+        <span class="material-icons"> done </span>
+      </div>
     </div>
-    <div v-if="showDetails" class="project_details">
+    <div v-if="showDetails" class="project__details">
       <p>{{ project.details }}</p>
     </div>
   </div>
@@ -30,6 +35,20 @@ export default {
   border-left: 4px solid #e90074;
   h3 {
     cursor: pointer;
+  }
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .material-icons {
+    font-size: 24px;
+    margin-left: 10px;
+    color: #bbb;
+    cursor: pointer;
+  }
+  .material-icons:hover {
+    color: #777;
   }
 }
 </style>
