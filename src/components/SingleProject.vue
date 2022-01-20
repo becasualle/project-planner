@@ -4,7 +4,7 @@
       <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
       <div class="icons">
         <span class="material-icons"> edit </span>
-        <span class="material-icons"> delete </span>
+        <span @click="deleteProject" class="material-icons"> delete </span>
         <span class="material-icons"> done </span>
       </div>
     </div>
@@ -20,8 +20,20 @@ export default {
       showDetails: false,
     };
   },
+  computed: {
+    uri() {
+      return `http://localhost:3000/projects/${this.project.id}`;
+    },
+  },
   props: {
     project: Object,
+  },
+  methods: {
+    deleteProject() {
+      fetch(this.uri, { method: 'DELETE' })
+        .then(() => this.$emit('delete', this.project.id))
+        .catch((e) => console.log(e.message));
+    },
   },
 };
 </script>
