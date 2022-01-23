@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label for="title">Title: </label>
     <input type="text" id="title" required v-model="title" />
     <label for="details">Details</label>
@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    id: Number,
+    id: String,
   },
   data() {
     return {
@@ -27,6 +27,22 @@ export default {
         this.details = data.details;
       })
       .catch((e) => console.log(e));
+  },
+  methods: {
+    handleSubmit() {
+      const project = {
+        title: this.title,
+        details: this.details,
+      };
+      const options = {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project),
+      };
+      fetch(this.uri, options)
+        .then(() => this.$router.push('/'))
+        .catch((e) => console.log(e));
+    },
   },
 };
 </script>
